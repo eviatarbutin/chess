@@ -117,7 +117,7 @@ export default function FeaturesPage() {
           All Features
         </h1>
         <p className="mt-4 text-lg text-muted leading-relaxed">
-          Everything ChessLens offers to help you understand and improve your
+          Everything ChessBoost offers to help you understand and improve your
           chess game.
         </p>
       </div>

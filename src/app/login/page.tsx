@@ -72,7 +72,7 @@ export default function LoginPage() {
           <Link href="/" className="inline-flex items-center gap-2">
             <Crown className="h-7 w-7 text-accent" />
             <span className="text-xl font-bold">
-              Chess<span className="text-accent">Lens</span>
+              Chess<span className="text-accent">Boost</span>
             </span>
           </Link>
           <h1 className="mt-4 text-2xl font-bold">Welcome back</h1>

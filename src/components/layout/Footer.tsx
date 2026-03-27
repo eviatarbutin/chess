@@ -36,7 +36,7 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-2">
               <Crown className="h-5 w-5 text-accent" />
               <span className="font-bold">
-                Chess<span className="text-accent">Lens</span>
+                Chess<span className="text-accent">Boost</span>
               </span>
             </Link>
             <p className="mt-3 text-sm text-muted leading-relaxed">
@@ -67,7 +67,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 border-t border-border pt-6 text-center text-xs text-muted">
-          &copy; {new Date().getFullYear()} ChessLens. Not affiliated with
+          &copy; {new Date().getFullYear()} ChessBoost. Not affiliated with
           Lichess. Powered by the Lichess API.
         </div>
       </div>

@@ -10,7 +10,7 @@ export default function PrivacyPage() {
             1. Information We Collect
           </h2>
           <p className="mt-3">
-            ChessLens does not collect, store, or process any personal
+            ChessBoost does not collect, store, or process any personal
             information. All chess data is fetched directly from the public
             Lichess API at the time of your request and is not retained on our
             servers.
@@ -45,7 +45,7 @@ export default function PrivacyPage() {
             4. Third-Party Services
           </h2>
           <p className="mt-3">
-            ChessLens relies on the Lichess API for chess data. Your use of
+            ChessBoost relies on the Lichess API for chess data. Your use of
             this service is also subject to{" "}
             <a
               href="https://lichess.org/privacy"
@@ -74,7 +74,7 @@ export default function PrivacyPage() {
             6. Children&apos;s Privacy
           </h2>
           <p className="mt-3">
-            ChessLens does not knowingly collect information from children
+            ChessBoost does not knowingly collect information from children
             under 13. Since we do not collect any personal information, this
             policy applies equally to users of all ages.
           </p>

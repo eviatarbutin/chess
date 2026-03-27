@@ -1,4 +1,4 @@
-import { getUser, getUserGames } from "@/lib/lichess";
+import { getChessUser, getChessGames, parsePlatform, platformLabel } from "@/lib/chess-provider";
 import {
   computeGameStats,
   computeOpeningStats,
@@ -7,19 +7,24 @@ import {
 import { WeaknessCards } from "@/components/analyze/WeaknessCards";
 import { Card } from "@/components/ui/Card";
 import { ShieldAlert } from "lucide-react";
+import { AnalysisTracker } from "@/components/analyze/AnalysisTracker";
 
 export default async function WeaknessesPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ username: string }>;
+  searchParams: Promise<{ platform?: string }>;
 }) {
   const { username } = await params;
+  const sp = await searchParams;
+  const platform = parsePlatform(sp.platform);
 
   let user, games;
   try {
     [user, games] = await Promise.all([
-      getUser(username),
-      getUserGames(username, { max: 200, opening: true }),
+      getChessUser(platform, username),
+      getChessGames(platform, username, { max: 200, opening: true }),
     ]);
   } catch {
     return (
@@ -28,7 +33,7 @@ export default async function WeaknessesPage({
           Failed to load data
         </h2>
         <p className="mt-2 text-sm text-muted">
-          Could not fetch data for &ldquo;{decodeURIComponent(username)}&rdquo;.
+          Could not fetch data for &ldquo;{decodeURIComponent(username)}&rdquo; on {platformLabel(platform)}.
         </p>
       </div>
     );
@@ -43,6 +48,7 @@ export default async function WeaknessesPage({
 
   return (
     <div className="space-y-6">
+      <AnalysisTracker username={decodeURIComponent(username)} analysisType="weaknesses" />
       <div>
         <h2 className="text-xl font-bold">Weakness Detection</h2>
         <p className="mt-1 text-sm text-muted">

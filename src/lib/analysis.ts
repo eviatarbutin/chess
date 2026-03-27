@@ -1,4 +1,4 @@
-import type { LichessGame, LichessUser } from "./lichess";
+import type { ChessGame as LichessGame, ChessUser as LichessUser } from "./chess-provider";
 
 export interface GameStats {
   total: number;

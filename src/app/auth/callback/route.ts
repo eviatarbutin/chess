@@ -14,6 +14,24 @@ export async function GET(request: Request) {
     const supabase = await createClient();
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
+      // Ensure a profile row exists (covers users created before the DB trigger)
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user) {
+        await supabase.from("profiles").upsert(
+          {
+            id: user.id,
+            display_name:
+              user.user_metadata?.full_name ??
+              user.user_metadata?.name ??
+              null,
+            avatar_url: user.user_metadata?.avatar_url ?? null,
+          },
+          { onConflict: "id", ignoreDuplicates: true }
+        );
+      }
+
       const forwardedHost = request.headers.get("x-forwarded-host");
       const isLocalEnv = process.env.NODE_ENV === "development";
       if (isLocalEnv) {

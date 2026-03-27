@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ChessLens — Lichess Analytics & Improvement",
+  title: "ChessBoost — Lichess Analytics & Improvement",
   description:
     "Analyze your Lichess games, track ratings, and get personalized improvement suggestions powered by data.",
 };

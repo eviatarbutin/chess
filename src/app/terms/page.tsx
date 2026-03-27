@@ -10,7 +10,7 @@ export default function TermsPage() {
             1. Acceptance of Terms
           </h2>
           <p className="mt-3">
-            By accessing and using ChessLens, you agree to be bound by these
+            By accessing and using ChessBoost, you agree to be bound by these
             Terms of Service. If you do not agree to these terms, please do not
             use the service.
           </p>
@@ -21,7 +21,7 @@ export default function TermsPage() {
             2. Description of Service
           </h2>
           <p className="mt-3">
-            ChessLens is a chess analytics platform that retrieves and analyzes
+            ChessBoost is a chess analytics platform that retrieves and analyzes
             publicly available game data from the Lichess API. We provide
             statistical analysis, rating tracking, opening analysis, and
             improvement suggestions based on this data.
@@ -32,12 +32,12 @@ export default function TermsPage() {
           <h2 className="text-xl font-semibold text-foreground">
             3. Use of the Service
           </h2>
-          <p className="mt-3">You agree to use ChessLens only for lawful purposes and in accordance with these Terms. You agree not to:</p>
+          <p className="mt-3">You agree to use ChessBoost only for lawful purposes and in accordance with these Terms. You agree not to:</p>
           <ul className="mt-2 ml-4 list-disc space-y-1">
             <li>Abuse the Lichess API through excessive requests via our service</li>
             <li>Attempt to scrape, reverse-engineer, or interfere with the platform</li>
             <li>Use the service for harassment or to stalk other players</li>
-            <li>Misrepresent the data or analysis provided by ChessLens</li>
+            <li>Misrepresent the data or analysis provided by ChessBoost</li>
           </ul>
         </section>
 
@@ -46,8 +46,8 @@ export default function TermsPage() {
             4. Intellectual Property
           </h2>
           <p className="mt-3">
-            The ChessLens interface, design, and analysis algorithms are the
-            property of ChessLens. Chess game data is provided by Lichess under
+            The ChessBoost interface, design, and analysis algorithms are the
+            property of ChessBoost. Chess game data is provided by Lichess under
             their terms of service and is publicly available.
           </p>
         </section>
@@ -57,7 +57,7 @@ export default function TermsPage() {
             5. Disclaimer of Warranties
           </h2>
           <p className="mt-3">
-            ChessLens is provided &ldquo;as is&rdquo; without warranties of any kind.
+            ChessBoost is provided &ldquo;as is&rdquo; without warranties of any kind.
             We do not guarantee the accuracy of the analysis, improvement
             suggestions, or any data presented. Chess improvement depends on
             many factors beyond data analysis.
@@ -69,7 +69,7 @@ export default function TermsPage() {
             6. Limitation of Liability
           </h2>
           <p className="mt-3">
-            ChessLens shall not be liable for any indirect, incidental, or
+            ChessBoost shall not be liable for any indirect, incidental, or
             consequential damages arising from your use of the service. Our
             total liability shall not exceed the amount you have paid for the
             service in the past 12 months.
@@ -81,7 +81,7 @@ export default function TermsPage() {
             7. Third-Party Services
           </h2>
           <p className="mt-3">
-            ChessLens relies on the Lichess API and is not affiliated with
+            ChessBoost relies on the Lichess API and is not affiliated with
             Lichess. We are not responsible for any changes, downtime, or data
             availability issues from Lichess.
           </p>
@@ -93,7 +93,7 @@ export default function TermsPage() {
           </h2>
           <p className="mt-3">
             We reserve the right to modify these terms at any time. Continued
-            use of ChessLens after changes constitutes acceptance of the new
+            use of ChessBoost after changes constitutes acceptance of the new
             terms.
           </p>
         </section>

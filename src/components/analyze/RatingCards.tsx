@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/Card";
-import type { PerfStat } from "@/lib/lichess";
+import type { PerfStat } from "@/lib/chess-provider";
 import { PERF_LABELS } from "@/lib/analysis";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 

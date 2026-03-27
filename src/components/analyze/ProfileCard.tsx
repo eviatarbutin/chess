@@ -1,9 +1,11 @@
 import { Card } from "@/components/ui/Card";
-import type { LichessUser } from "@/lib/lichess";
+import type { ChessUser } from "@/lib/chess-provider";
+import type { Platform } from "@/lib/chess-provider";
 import { formatPlayTime } from "@/lib/analysis";
 import { Clock, Gamepad2, Calendar } from "lucide-react";
 
-export function ProfileCard({ user }: { user: LichessUser }) {
+export function ProfileCard({ user, platform = "lichess" }: { user: ChessUser; platform?: Platform }) {
+  void platform;
   return (
     <Card>
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

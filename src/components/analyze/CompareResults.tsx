@@ -3,14 +3,15 @@
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/Card";
 import { Loader2, Crown, ExternalLink } from "lucide-react";
-import type { LichessUser, PerfStat } from "@/lib/lichess";
+import type { ChessUser, PerfStat, Platform } from "@/lib/chess-provider";
+import { platformProfileUrl, getChessUser } from "@/lib/chess-provider";
 import { PERF_LABELS, formatPlayTime } from "@/lib/analysis";
 import Link from "next/link";
 
 const COMPARE_PERFS = ["bullet", "blitz", "rapid", "classical", "puzzle"];
 
 interface PlayerData {
-  user: LichessUser;
+  user: ChessUser;
   error?: string;
 }
 
@@ -97,9 +98,11 @@ function RatingBar({
 export function CompareResults({
   player1,
   player2,
+  platform = "lichess",
 }: {
   player1: string;
   player2: string;
+  platform?: Platform;
 }) {
   const [data, setData] = useState<{
     p1?: PlayerData;
@@ -111,18 +114,16 @@ export function CompareResults({
     setData({ loading: true });
 
     Promise.all([
-      fetch(`https://lichess.org/api/user/${player1}`)
-        .then((r) => (r.ok ? r.json() : Promise.reject()))
-        .then((user: LichessUser) => ({ user }))
-        .catch(() => ({ user: null as unknown as LichessUser, error: "Not found" })),
-      fetch(`https://lichess.org/api/user/${player2}`)
-        .then((r) => (r.ok ? r.json() : Promise.reject()))
-        .then((user: LichessUser) => ({ user }))
-        .catch(() => ({ user: null as unknown as LichessUser, error: "Not found" })),
+      getChessUser(platform, player1)
+        .then((user) => ({ user }))
+        .catch(() => ({ user: null as unknown as ChessUser, error: "Not found" })),
+      getChessUser(platform, player2)
+        .then((user) => ({ user }))
+        .catch(() => ({ user: null as unknown as ChessUser, error: "Not found" })),
     ]).then(([p1, p2]) => {
       setData({ p1, p2, loading: false });
     });
-  }, [player1, player2]);
+  }, [player1, player2, platform]);
 
   if (data.loading) {
     return (
@@ -153,17 +154,17 @@ export function CompareResults({
   return (
     <div className="mt-12 space-y-6">
       <Card>
-        <div className="flex items-center justify-between border-b border-border pb-4 mb-4">
+          <div className="flex items-center justify-between border-b border-border pb-4 mb-4">
           <div className="flex items-center gap-2">
             <Crown className="h-4 w-4 text-accent" />
             <Link
-              href={`/analyze/${u1.username}`}
+              href={`/analyze/${u1.username}${platform !== "lichess" ? `?platform=${platform}` : ""}`}
               className="font-bold hover:text-accent transition-colors"
             >
               {u1.username}
             </Link>
             <Link
-              href={`https://lichess.org/@/${u1.username}`}
+              href={platformProfileUrl(platform, u1.username)}
               target="_blank"
               className="text-muted hover:text-accent"
             >
@@ -173,14 +174,14 @@ export function CompareResults({
           <span className="text-xs text-muted font-medium">VS</span>
           <div className="flex items-center gap-2">
             <Link
-              href={`https://lichess.org/@/${u2.username}`}
+              href={platformProfileUrl(platform, u2.username)}
               target="_blank"
               className="text-muted hover:text-accent"
             >
               <ExternalLink className="h-3 w-3" />
             </Link>
             <Link
-              href={`/analyze/${u2.username}`}
+              href={`/analyze/${u2.username}${platform !== "lichess" ? `?platform=${platform}` : ""}`}
               className="font-bold hover:text-accent transition-colors"
             >
               {u2.username}

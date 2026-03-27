@@ -3,7 +3,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import type { LichessUser, PerfStat } from "@/lib/lichess";
+import type { ChessUser as LichessUser, PerfStat } from "@/lib/chess-provider";
 import { PERF_LABELS } from "@/lib/analysis";
 import type { StoredStudent } from "@/hooks/useStudents";
 import { Loader2, BarChart3 } from "lucide-react";

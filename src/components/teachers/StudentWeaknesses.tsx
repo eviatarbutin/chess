@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import type { LichessUser, LichessGame } from "@/lib/lichess";
+import type { ChessUser as LichessUser, ChessGame as LichessGame } from "@/lib/chess-provider";
 import {
   computeGameStats,
   computeOpeningStats,

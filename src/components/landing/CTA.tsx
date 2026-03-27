@@ -1,8 +1,35 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { createClient } from "@/lib/supabase/client";
 
 export function CTA() {
+  const [analyzeHref, setAnalyzeHref] = useState("/analyze");
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(async ({ data }) => {
+      if (!data.user) return;
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("lichess_username, chess_com_username")
+        .eq("id", data.user.id)
+        .single();
+      if (profile?.lichess_username) {
+        setAnalyzeHref(
+          `/analyze/${encodeURIComponent(profile.lichess_username)}`
+        );
+      } else if (profile?.chess_com_username) {
+        setAnalyzeHref(
+          `/analyze/${encodeURIComponent(profile.chess_com_username)}?platform=chesscom`
+        );
+      }
+    });
+  }, []);
+
   return (
     <section className="py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -12,11 +39,11 @@ export function CTA() {
               Ready to improve your game?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-muted text-lg leading-relaxed">
-              Join thousands of chess players who use ChessLens to find their
+              Join thousands of chess players who use ChessBoost to find their
               weaknesses and climb the rating ladder.
             </p>
             <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <Link href="/analyze">
+              <Link href={analyzeHref}>
                 <Button size="lg">
                   Start Analyzing <ArrowRight className="h-4 w-4" />
                 </Button>

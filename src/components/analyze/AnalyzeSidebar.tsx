@@ -10,6 +10,7 @@ import {
   AlertTriangle,
   CalendarClock,
 } from "lucide-react";
+import type { Platform } from "@/lib/chess-provider";
 
 const LINKS = [
   { href: "", label: "Dashboard", icon: LayoutDashboard },
@@ -20,16 +21,17 @@ const LINKS = [
   { href: "/weaknesses", label: "Weaknesses", icon: AlertTriangle },
 ];
 
-export function AnalyzeSidebar({ username }: { username: string }) {
+export function AnalyzeSidebar({ username, platform = "lichess" }: { username: string; platform?: Platform }) {
   const pathname = usePathname();
   const base = `/analyze/${username}`;
+  const qs = platform !== "lichess" ? `?platform=${platform}` : "";
 
   return (
     <aside className="w-full shrink-0 md:w-56 lg:w-64">
       <nav className="flex md:flex-col gap-1 overflow-x-auto md:overflow-x-visible pb-2 md:pb-0">
         {LINKS.map((link) => {
-          const href = `${base}${link.href}`;
-          const active = pathname === href;
+          const href = `${base}${link.href}${qs}`;
+          const active = pathname === `${base}${link.href}`;
           return (
             <Link
               key={link.href}

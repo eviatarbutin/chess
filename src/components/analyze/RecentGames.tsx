@@ -1,7 +1,14 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/Card";
-import type { LichessGame } from "@/lib/lichess";
+import { SaveGameButton } from "@/components/analyze/SaveGameButton";
+import type { ChessGame as LichessGame } from "@/lib/chess-provider";
+import type { Platform } from "@/lib/chess-provider";
+import { platformGameUrl } from "@/lib/chess-provider";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { createClient } from "@/lib/supabase/client";
 
 function resultFor(game: LichessGame, username: string) {
   const uid = username.toLowerCase();
@@ -28,10 +35,32 @@ function opponentName(game: LichessGame, username: string) {
 export function RecentGames({
   games,
   username,
+  platform = "lichess",
 }: {
   games: LichessGame[];
   username: string;
+  platform?: Platform;
 }) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [savedIds, setSavedIds] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(async ({ data }) => {
+      if (!data.user) return;
+      setIsLoggedIn(true);
+      const { data: saved } = await supabase
+        .from("saved_games")
+        .select("lichess_game_id")
+        .eq("user_id", data.user.id);
+      if (saved) {
+        setSavedIds(
+          new Set(saved.map((r: { lichess_game_id: string }) => r.lichess_game_id))
+        );
+      }
+    });
+  }, []);
+
   if (games.length === 0) {
     return (
       <Card>
@@ -75,8 +104,15 @@ export function RecentGames({
                   day: "numeric",
                 })}
               </div>
+              {isLoggedIn && (
+                <SaveGameButton
+                  gameId={game.id}
+                  username={username}
+                  initialSaved={savedIds.has(game.id)}
+                />
+              )}
               <Link
-                href={`https://lichess.org/${game.id}`}
+                href={platformGameUrl(platform, game.id)}
                 target="_blank"
                 className="text-muted hover:text-accent transition-colors"
               >

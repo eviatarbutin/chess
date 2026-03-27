@@ -6,7 +6,7 @@ const VALUES = [
     icon: Target,
     title: "Data-Driven Improvement",
     description:
-      "We believe every chess player can improve faster by understanding their own patterns. ChessLens turns raw game data into clear, actionable insights.",
+      "We believe every chess player can improve faster by understanding their own patterns. ChessBoost turns raw game data into clear, actionable insights.",
   },
   {
     icon: Shield,
@@ -18,7 +18,7 @@ const VALUES = [
     icon: Heart,
     title: "Open & Free",
     description:
-      "ChessLens is built for the community. Core features are free and always will be. We're powered by the incredible open Lichess platform.",
+      "ChessBoost is built for the community. Core features are free and always will be. We're powered by the incredible open Lichess platform.",
   },
 ];
 
@@ -30,14 +30,14 @@ export default function AboutPage() {
           <div className="inline-flex items-center gap-2 mb-6">
             <Crown className="h-8 w-8 text-accent" />
             <span className="text-2xl font-bold">
-              Chess<span className="text-accent">Lens</span>
+              Chess<span className="text-accent">Boost</span>
             </span>
           </div>
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-            About ChessLens
+            About ChessBoost
           </h1>
           <p className="mt-6 text-lg text-muted leading-relaxed">
-            ChessLens is a chess analytics platform that helps players of all
+            ChessBoost is a chess analytics platform that helps players of all
             levels understand their games, identify weaknesses, and improve
             systematically. We pull data from the Lichess API and transform it
             into meaningful insights.
@@ -64,7 +64,7 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold text-center">Our Story</h2>
           <div className="mt-6 space-y-4 text-muted leading-relaxed">
             <p>
-              ChessLens started as a side project by a group of chess
+              ChessBoost started as a side project by a group of chess
               enthusiasts who were frustrated with the lack of accessible,
               in-depth analytics tools for casual and intermediate players.
             </p>
@@ -75,7 +75,7 @@ export default function AboutPage() {
               improvement available to everyone.
             </p>
             <p>
-              Today, ChessLens analyzes thousands of games daily, helping
+              Today, ChessBoost analyzes thousands of games daily, helping
               players from beginners to titled players understand where they
               stand and what to work on next.
             </p>
@@ -85,7 +85,7 @@ export default function AboutPage() {
         <div className="mt-16 rounded-xl border border-accent/20 bg-accent-muted p-8 text-center">
           <h3 className="text-lg font-bold">Want to contribute?</h3>
           <p className="mt-2 text-sm text-muted">
-            ChessLens is a community project. If you&apos;re a developer, data
+            ChessBoost is a community project. If you&apos;re a developer, data
             scientist, or chess coach who wants to help, we&apos;d love to hear
             from you.
           </p>
